@@ -20,7 +20,7 @@ import Foundation
 - Обьяви переменную _listOfNumbers_, представляющую собой массив, который соостоит из целых чисел. Проицинициализируй его любыми значениями.
 */
 // Добавь код сюда:
-var listOfNumbers: [Int] = [1, 7, 9, 14, 8, 50]
+var listOfNumbers: [Int] = [1, 7, 9, 14, 8, 50, 2]
 /*:
  - Выведи в консоль максимальное значение из этого массива.
  - Example: 😉\
@@ -57,7 +57,11 @@ print("Odd numbers: \(filteredNums)")
  Sum: 224
  */
 // Добавь код сюда:
-
+var sumListOfNumbers: Int = 0
+for i in listOfNumbers {
+    sumListOfNumbers += i
+}
+print("Sum: \(sumListOfNumbers)")
 /*:
  - Выведи в консоль все числа из этого массива, которые расположены по нечетным индексам.
  - Example: 😉\
@@ -67,7 +71,14 @@ print("Odd numbers: \(filteredNums)")
  Numbers with odd indexes: 6, 3, 7
  */
 // Добавь код сюда:
-
+var oddIndexesListOfNumbers: [Int] = []
+for (index, element) in listOfNumbers.enumerated(){
+    if index % 2 != 0 {
+        oddIndexesListOfNumbers.append(element)
+    }
+}
+print("Numbers with odd indexes: \(oddIndexesListOfNumbers)")
+    
 /*:
  - Выведи в консоль числа из этого массива в обратном порядке.
  - Example: 😉\
@@ -77,6 +88,10 @@ print("Odd numbers: \(filteredNums)")
  Going back: 7, 106, 3, 100, 6, 2
  */
 // Добавь код сюда:
+
+var goingBacklistOfNumbers = listOfNumbers
+goingBacklistOfNumbers.reverse()
+print("Going back: \(goingBacklistOfNumbers)")
 
 /*:
  - Получи новый массив, путем сортировки массива по возрастанию.
@@ -92,12 +107,13 @@ print("Odd numbers: \(filteredNums)")
  Sorted array: [2, 3, 6, 7, 100, 106]
  */
 // Добавь код сюда:
-
+let sortedListOfNumbers = listOfNumbers.sorted()
+print("Sorted array: \(sortedListOfNumbers)")
 /*:
  - Обьяви целочисленную переменную _x_ и присвой ей любое значение.
   */
 // Добавь код сюда:
-
+var x = 14
 /*:
  - Проверь наличие _x_ в массиве _listOfNumbers_. Если есть, выведи в консоль _true_, если нет - _false_.
  - Example: 😉\
@@ -108,7 +124,7 @@ print("Odd numbers: \(filteredNums)")
  true
  */
 // Добавь код сюда:
-
+print(listOfNumbers.contains(x))
 /*:
 ---
 #### Задание 2
@@ -116,7 +132,7 @@ print("Odd numbers: \(filteredNums)")
 
  */
 // Добавь код сюда:
-
+var otherNumbers = [6, 15, 7, 28, 9]
 /*:
  - Выведи в консоль все элементы из массива _listOfNumbers_, которые есть в массиве _otherNumbers_.
  - Example: 😉\
@@ -136,8 +152,13 @@ print("Odd numbers: \(filteredNums)")
  
  */
 // Добавь код сюда:
+let intersectionArray = Set(listOfNumbers).intersection(Set(otherNumbers))
 
-
+if intersectionArray.isEmpty {
+    print("Intersection: No data")
+} else {
+    print("Intersection: \(intersectionArray)")
+}
 /*:
 ---
 ### Продвинутый уровень:
