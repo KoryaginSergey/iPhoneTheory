@@ -67,8 +67,7 @@ number1 = 18
 number2 = 16.4
 number3 = 5.7
 
-//var sum3: Float = x3 + y3 + z3
-var sum3: Float = Float(number1) + number2 + Float(number3)
+let sum3: Float = Float(number1) + number2 + Float(number3)
 print("sum3 = \(sum3)")
 /*:
 - Найди произведение всех трех констант и запиши его в переменную типа `Int`. Результат выведи в консоль.
@@ -76,11 +75,14 @@ print("sum3 = \(sum3)")
 */
 // Добавь код сюда:
 
+let mult1: Float = Float(number1) * number2 * Float(number3)
+let mult2: Int = Int(mult1)
+print("mult2 = \(mult2)")
 /*:
 - Найди остаток от деления константы типа `Float` на константу типа `Double` и запиши ее в переменную типа `Double`. Результат выведи в консоль.
 */
 // Добавь код сюда:
-
+let div: Double = Double(Int(number2) % Int(number3))
 
 /*:
 ---
@@ -91,7 +93,11 @@ print("sum3 = \(sum3)")
  - Выведи в консоль результат.
  */
 // Добавь код сюда:
-
+var str4: String = "Hello"
+var number4: Int = 6
+var number5: Int = 8
+var result: String = "\(str4) \(number4 + number5)"
+print(result)
 /*:
 ---
 #### Задание 5:
@@ -101,6 +107,14 @@ print("sum3 = \(sum3)")
 
  */
 // Добавь код сюда:
+var log1: Bool = true
+var log2: Bool = false
+
+let log3 = log1 || log2
+let log4 = log1 && log2
+
+print(log3)
+print(log4)
 
 
 /*:
@@ -112,6 +126,15 @@ print("sum3 = \(sum3)")
 
  */
 // Добавь код сюда:
+let name = "Sergey Koryagin"
+let dateOfBirth = "23.12.1983"
+
+let result1 = "\(name) \(dateOfBirth)"
+print(result1)
+
+print(name, dateOfBirth)
+
+
 
 
 /*:
