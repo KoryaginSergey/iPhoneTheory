@@ -75,7 +75,7 @@ print("sum3 = \(sum3)")
 */
 // Добавь код сюда:
 
-let mult1: Float = Float(number1) * number2 * Float(number3)
+let mult1: Double = Double(number1) * Double(number2) * Double(number3)
 let mult2: Int = Int(mult1)
 print("mult2 = \(mult2)")
 /*:
