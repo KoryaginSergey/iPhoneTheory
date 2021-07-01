@@ -39,7 +39,7 @@ import Foundation
  - Обьяви переменную `n` и проинициализируй ее  любым целочисленными значением.
 */
 // Добавь код сюда:
-
+var n = 10
 /*:
  - Напиши код, который выведет в консоль фразу _I like Swift!_ `n` раз.
  
@@ -57,7 +57,11 @@ _Output:_\
  */
 
 // Добавь код сюда:
-
+var i = n
+while i > 0 {
+    print("I like Swift!")
+    i = i - 1
+}
 /*:
 ---
 #### Задание 2
@@ -75,7 +79,9 @@ n = 5\
  25
 */
 // Добавь код сюда:
-
+for i in 1...n {
+    print(i*i)
+}
 /*:
  - Выведи в консоль степени числа `2`, которые меньше или равны `n`.
  
@@ -91,7 +97,11 @@ n = 100\
  64
  */
  // Добавь код сюда:
-
+var exponentialNumber = 2
+while exponentialNumber < n {
+    print(exponentialNumber)
+    exponentialNumber *= 2
+}
 /*:
  - Нарисуй в консоли квадрат из `n` на `n` звездочек (⭐)
  - Example: 😉
@@ -105,7 +115,19 @@ n = 4\
  
  */
 // Добавь код сюда:
-
+let star = "\u{2B50}"
+var cycle1 = 0
+var cycle2 = 0
+while cycle1 < n {
+//    print("")
+    cycle2 = 0
+    while cycle2 < n {
+        print(star, terminator: "")
+        cycle2 += 1
+    }
+    print("")
+    cycle1 += 1
+}
 /*:
  - Нарисуй в консоли треугольник из `n` звездочек (⭐)
  - Example: 😉
@@ -118,7 +140,17 @@ n = 4\
  ⭐⭐⭐⭐
  */
 // Добавь код сюда:
-
+cycle1 = 0
+cycle2 = 0
+while cycle1 < n {
+    cycle2 = 0
+    while cycle2 < cycle1 + 1 {
+        print(star, terminator: "")
+        cycle2 += 1
+    }
+      print("")
+    cycle1 += 1
+}
 
 /*:
 ---
@@ -129,7 +161,59 @@ n = 4\
  - Сделайте быструю сортировку  (quick sort).
 */
 // Добавь код сюда:
+var someArray = [4, 15, 20, 67, 12, 54, 78, 14, 25, 38, 101, 77, 19, 23, 51, 99, 90, 1, 11, 61, 12, 39, 40, 42]
 
+// linear sort
+for index in 1..<someArray.count {
+    var jIndex = index - 1
+    let value = someArray[index]
+    
+    while jIndex >= 0 && value < someArray[jIndex] {
+        someArray[jIndex + 1] = someArray[jIndex]
+        jIndex -= 1
+    }
+    someArray[jIndex + 1] = value
+}
+print(someArray)
+
+someArray = [4, 15, 20, 67, 12, 54, 78, 14, 25, 38, 101, 77, 19, 23, 51, 99, 90, 1, 11, 61, 12, 39, 40, 42]
+
+// bubble sort
+for i in 0..<someArray.count {
+    let index = (someArray.count - 1) - i
+    for j in 0..<index {
+        let number = someArray[j]
+        let nextNumber = someArray[j + 1]
+        if number > nextNumber {
+            someArray[j] = nextNumber
+            someArray[j + 1] = number
+        }
+    }
+}
+print(someArray)
+
+someArray = [4, 15, 20, 67, 12, 54, 78, 14, 25, 38, 101, 77, 19, 23, 51, 99, 90, 1, 11, 61, 12, 39, 40, 42]
+
+// quick sort
+func quickSort(_ list: [Int]) -> [Int] {
+    if list.count <= 1 {
+        return list
+    }
+    
+    let middleValue = list[list.count/2];
+
+    let down = list.filter{$0 < middleValue}
+    let equel = list.filter{$0 ==  middleValue}
+    let up = list.filter{$0 >  middleValue}
+    
+    let returnValue = quickSort(down) + equel + quickSort(up)
+    
+    return returnValue
+}
+
+let sorted = quickSort(someArray)
+
+print(sorted)
 /*:
 ---
 ### Продвинутый уровень:
