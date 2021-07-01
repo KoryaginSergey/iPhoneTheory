@@ -33,13 +33,21 @@ import Foundation
  We ❤️ Swift
  */
 // Добавь код сюда:
-
+func applyKTimes(k: Int, clouser: () -> ()){
+    for _ in 1...k {
+        clouser()
+    }
+}
+applyKTimes(k: 3) {
+    print("Hello world!")
+}
 /*:
 ---
 #### Задание 2
  - Обьяви переменную _numbers_, представляющую собой массив, который соостоит из целых чисел. Проицинициализируй его любыми значениями.
  */
 // Добавь код сюда:
+var numbers = [1, 2, 3, 4, 6, 8, 9, 3, 12, 11]
 
 /*:
  - Создай новый массив _multiples_, состоящий из всех кратных 3 чисел исходного массива.
@@ -61,7 +69,10 @@ import Foundation
  No data
  */
 // Добавь код сюда:
-
+var multiples = numbers.filter { (item) -> Bool in
+    return item%3 == 0
+}
+multiples.count > 0 ? print(multiples) : print("No data")
 /*:
  - Найди наибольшее число из исходного массива _numbers_ и выведи его в консоль.
  - Note: 👆 _Для реализации задачи используй метод `reduce`._
@@ -74,7 +85,13 @@ import Foundation
  Max: 12
  */
 // Добавь код сюда:
-
+let maxNumber = numbers.reduce(0) { (resultValue, value) -> Int in
+    if resultValue < value {
+        return value
+    }
+    return resultValue
+}
+print("Max: \(maxNumber)")
 /*:
 ---
 #### Задание 3
@@ -93,7 +110,14 @@ import Foundation
  */
 
 // Добавь код сюда:
-
+func forEach(array: [Int], clouser: (Int) -> ()) {
+    for item in array {
+        clouser(item)
+    }
+}
+forEach(array: [3, 5, 7]) {
+    print($0 + 1)
+}
 /*:
 ---
 ### Продвинутый уровень:
@@ -155,8 +179,6 @@ _Output:_\
 // Добавь код сюда:
 
 var animals = ["fish", "cat", "chicken", "dog"]
-let sortedAnimals = animals.sort { (one: String, two: String) -> Bool in
-  return one < two
-}
+print(animals.sorted())
 
 //: [Назад: Функции](@previous)  |  Страница 7  |  [Вперед: Кортежи, перечисления и псевдонимы](@next)
