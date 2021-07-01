@@ -23,7 +23,10 @@ import Foundation
  Min: 1
  */
 // Добавь код сюда:
-
+func calculateMin(firstValue: Int, secondValue: Int) -> Int {
+    return firstValue <= secondValue ? firstValue : secondValue
+}
+print("Min: \(calculateMin(firstValue: 5, secondValue: 3))")
 /*:
 ---
 #### Задание 2
@@ -44,7 +47,14 @@ import Foundation
  */
 
 // Добавь код сюда:
-
+func countDown(n: Int) {
+    for item in (1...n).reversed() {
+        print(item)
+        sleep(1)
+    }
+    print("GO!")
+}
+countDown(n: 2)
 
 /*:
 ---
@@ -58,6 +68,12 @@ import Foundation
  Hi, NIX
  */
 // Добавь код сюда:
+func repeatPrint(s: String, n: Int) {
+    for _ in 1...n {
+        print(s)
+    }
+}
+repeatPrint(s: "HI,NIX", n: 3)
 
 /*:
 ---
@@ -71,7 +87,12 @@ import Foundation
  [3, 2, 1]
  */
 // Добавь код сюда:
-
+func reverse(originalArray: [Int]) -> [Int] {
+    
+    let resultArray: [Int] = originalArray.reversed()
+    return resultArray
+}
+print(reverse(originalArray: [3, 7, 1, 10, 4]))
 /*:
 ---
 #### Задание 5
@@ -96,7 +117,15 @@ import Foundation
  5! = 120
  */
 // Добавь код сюда:
-
+func factorial(n: Int) -> Int{
+    if n == 0{
+        return 1
+    }
+    return n * factorial(n: n-1)
+}
+let number = 5
+ 
+print("\(number)! = \(factorial(n: number))")
 /*:
 ---
 #### Задание 6
@@ -119,7 +148,17 @@ import Foundation
 []
  */
 // Добавь код сюда:
-
+func filterDigitLength(arrayOfPositivIntegers: [Int], characters: Int) -> [Int] {
+    var resultArray: [Int] = [Int]()
+    for item in arrayOfPositivIntegers {
+        let stringValue = "\(item)"
+        if stringValue.count == characters {
+            resultArray.append(item)
+        }
+    }
+    return resultArray
+}
+print(filterDigitLength(arrayOfPositivIntegers: [345, 5, 45], characters: 2))
 /*:
 ---
 #### Задание 7
@@ -141,7 +180,14 @@ import Foundation
 ["jpg", "pdf", "mp3"]
  */
 // Добавь код сюда:
-
+func getExtension(arrayStrings: [String]) -> [String] {
+    let resultArray: [String] = arrayStrings.map { (value) -> String in
+        let valueArray = value.components(separatedBy: ".")
+        return valueArray.last!
+    }
+    return resultArray
+}
+print(getExtension(arrayStrings: ["project1.jpg", "project1.pdf", "project1.mp3", "project2.pdf"]))
 
 
 /*:
