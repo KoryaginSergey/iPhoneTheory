@@ -23,24 +23,30 @@ import Foundation
  */
 
 // Добавь код сюда:
+var country: [String : String] = ["VA": "Vatican", "UA": "Ukraine", "IT": "Italy"]
 
 /*:
  - Выведи в консоль все ключи из словаря.
  */
 // Добавь код сюда:
-
+for countryCode in country.keys {
+    print(countryCode)
+}
 /*:
  - Выведи в консоль все значения из словаря.
  */
 // Добавь код сюда:
-
+for countryName in country.values {
+    print(countryName)
+}
 /*:
  - Выведи в консоль название самой маленькой страны.
  - Note: 👆 _Получи из словаря значение по ключу VA_
  */
 // Добавь код сюда:
-
-
+if let smallestCountryName = country["VA"] {
+print("Smallest country - \(smallestCountryName)")
+}
 /*:
 ---
 #### Задание 2
