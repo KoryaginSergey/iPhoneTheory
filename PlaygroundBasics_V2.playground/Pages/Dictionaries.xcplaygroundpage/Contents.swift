@@ -66,6 +66,16 @@ print("Smallest country - \(smallestCountryName)")
  */
 
 // Добавь код сюда:
+var peopleTask2: [[String : String]] = [["firstName": "Calvin",
+                                    "lastName": "Newton"],
+                                   ["firstName": "Garry",
+                                   "lastName": "Mckenzie"],
+                                   ["firstName": "Leah",
+                                   "lastName": "Rivera"],
+                                   ["firstName": "Sonja",
+                                   "lastName": "Moreno"],
+                                   ["firstName": "Noel",
+                                   "lastName": "Bowen"]]
 /*:
 - Создай массив строк _firstNames_, состоящий из значений по ключу _“firstName”_, для каждого из словаря.
  - Выведи в консоль полученный массив.
@@ -74,7 +84,13 @@ print("Smallest country - \(smallestCountryName)")
  firstNames = ["Calvin","Garry","Leah","Sonja","Noel"]
  */
 // Добавь код сюда:
-
+var firstNames: [String] = []
+for item in peopleTask2 {
+    if let firstName = item["firstName"] {
+    firstNames.append(firstName)
+    }
+}
+print("firstNames = \(firstNames)")
 /*:
 ---
 #### Задание 3
