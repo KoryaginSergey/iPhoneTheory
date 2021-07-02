@@ -139,6 +139,23 @@ var people: [[String:Any]] = [
  5. Sonja Moreno - 3
 */
 // Добавь код сюда:
+var sortedArray:  [[String:Any]] = people.sorted(by: { (first, second) -> Bool in
+    if let first = first["score"] as? Int, let second = second["score"] as? Int   {
+        return first > second
+    }
+    return false
+})
+
+for (index, item) in sortedArray.enumerated() {
+    
+    guard let firstName = item["firstName"] else {continue}
+    guard let lastName = item["lastName"] else {continue}
+    guard let score = item["score"] else {continue}
+    
+    print("\(index + 1). \(firstName) \(lastName) - \(score)")
+}
+
+
 
 
 //: [Назад: Кортежи, перечисления и псевдонимы типов](@previous)  |  Страница 9  |  [Вперед: Структуры и классы](@next)
