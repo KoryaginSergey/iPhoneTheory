@@ -78,8 +78,8 @@ print("Line length = \(line.length())")
  */
 // Добавь код сюда:
 class Weather {
-    var windSpeed: Int = 0
-    var chanceOfRain: Int = 0
+    var windSpeed: Int
+    var chanceOfRain: Int
 
 /*:
  - У класса должен быть обязательный инициализатор, который принимает значения скорости ветра (_windSpeed_) и шанс дождя (_chanceOfRain_)
