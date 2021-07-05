@@ -17,7 +17,33 @@ import Foundation
  */
 
 // Добавь код сюда:
+class User {
+    func startedAlarm() {
+        let alarmClock = AlarmClock()
+        alarmClock.delegate = self
+        print("Started the alarm")
+        alarmClock.turnOn()
+    }
+}
+extension User : AlarmClockDelegate {
+    func alarmDidRang() {
+        print("The alarm clock rings")
+    }
+}
+protocol AlarmClockDelegate: class {
+    func alarmDidRang()
+}
 
+class AlarmClock {
+    weak var delegate: AlarmClockDelegate?
+    func turnOn() {
+        sleep(2)
+        delegate?.alarmDidRang()
+    }
+}
+
+let user = User()
+user.startedAlarm()
 /*:
 ---
 ## Задание 2
