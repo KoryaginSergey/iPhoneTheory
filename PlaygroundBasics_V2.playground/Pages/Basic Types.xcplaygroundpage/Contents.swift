@@ -168,7 +168,20 @@ for item in countries {
  - Выведи его консоль.
 */
 // Добавь код сюда:
+let setLettersCyrillic = "фывапролджэ"
+let setLettersCyrillicUpper = setLettersCyrillic.uppercased()
 
+func transliterate(nonLatin: String) -> String {
+    return nonLatin
+        .applyingTransform(.toLatin, reverse: false)?
+        .applyingTransform(.stripDiacritics, reverse: false)?
+        .lowercased() ?? nonLatin
+}
+let setLettersLatin = transliterate(nonLatin: setLettersCyrillicUpper)
+
+for (index, value) in setLettersLatin.enumerated() {
+    print("Index: \(index)   Letter: \(value)")
+}
 /*:
 ---
 #### Задание 9:
