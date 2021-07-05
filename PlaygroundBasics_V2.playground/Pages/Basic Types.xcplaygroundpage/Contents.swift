@@ -146,6 +146,18 @@ print(name, dateOfBirth)
  - Если в названии страны встречается буква А, выведи ее нзавание в консоль.
 */
 // Добавь код сюда:
+let ukraine = "Ukraine"
+let poland = "Poland"
+let austria = "Austria"
+let argentina = "Argentina"
+let albania = "Albania"
+let countries: [String] = [ukraine, poland, austria, argentina, albania]
+for item in countries {
+    if item[item.startIndex] == "A" {
+        print(item)
+    }
+}
+
 
 /*:
 ---
