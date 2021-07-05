@@ -78,8 +78,8 @@ print("Line length = \(line.length())")
  */
 // Добавь код сюда:
 class Weather {
-    var windSpeed: Int
-    var chanceOfRain: Int
+    let windSpeed: Int
+    let chanceOfRain: Int
 
 /*:
  - У класса должен быть обязательный инициализатор, который принимает значения скорости ветра (_windSpeed_) и шанс дождя (_chanceOfRain_)
@@ -152,8 +152,8 @@ class Point3D: Point2D {
  */
 // Добавь код сюда:
     init(x: Double, y: Double, z: Double) {
-        self.z = z
         super.init(x: x, y: y)
+        self.z = z
     }
     override func reset() {
         z = 0
