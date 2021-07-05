@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 /*:
  # Делегаты
 
@@ -18,32 +19,35 @@ import Foundation
 
 // Добавь код сюда:
 class User {
-    func startedAlarm() {
+    func startAlarm() {
         let alarmClock = AlarmClock()
         alarmClock.delegate = self
-        print("Started the alarm")
         alarmClock.turnOn()
     }
 }
 extension User : AlarmClockDelegate {
-    func alarmDidRang() {
-        print("The alarm clock rings")
+    func alarmDidRing() {
+        print("The alarm clock rings. Turt it off")
     }
 }
 protocol AlarmClockDelegate: class {
-    func alarmDidRang()
+    func alarmDidRing()
 }
 
 class AlarmClock {
     weak var delegate: AlarmClockDelegate?
     func turnOn() {
+        print("Started the alarm")
         sleep(2)
-        delegate?.alarmDidRang()
+        delegate?.alarmDidRing()
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//            self.delegate?.alarmDidRing()
+//        }
     }
 }
 
 let user = User()
-user.startedAlarm()
+user.startAlarm()
 /*:
 ---
 ## Задание 2
@@ -52,5 +56,46 @@ user.startedAlarm()
 ![Delegate.Task2](Playground.Delegate.Task2.png)
 */
 // Добавь код сюда:
+class CLient {
+    let builder = Builder()
+    func hireBuilder() {
+        builder.delegate = self
+        print("Hire a builder")
+        builder.startedToWork()
+    }
+   private func chooseColor () {
+    print("Choose paint? I want green.")
+        builder.chooseColor(color: UIColor.green)
+    }
+}
+extension CLient : BuilderDelegate {
+    func callForCompletionWork() {
+        print("Work is done")
+    }
+    func choisePaint() {
+        self.chooseColor()
+    }
+    func continueWork() {
+        print("Continue work.")
+    }
+}
+protocol BuilderDelegate: class {
+    func choisePaint()
+    func continueWork()
+    func callForCompletionWork()
+}
 
+class Builder {
+    weak var delegate: BuilderDelegate?
+    func startedToWork() {
+        print("Builder started working")
+        delegate?.choisePaint()
+    }
+    func chooseColor(color: UIColor) {
+        delegate?.continueWork()
+        delegate?.callForCompletionWork()
+    }
+}
+let client = CLient()
+client.hireBuilder()
 //: [Назад: Протоколы](@previous)  |  Страница 12]  [Вперед:  Универсальные шаблоны](@next)
