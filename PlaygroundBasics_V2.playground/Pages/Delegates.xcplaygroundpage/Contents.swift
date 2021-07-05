@@ -63,37 +63,37 @@ class CLient {
         print("Hire a builder")
         builder.startedToWork()
     }
-   private func chooseColor () {
-    print("Choose paint? I want green.")
+    private func chooseColor () {
+        print("Choose paint? I want green.")
         builder.chooseColor(color: UIColor.green)
     }
 }
 extension CLient : BuilderDelegate {
-    func callForCompletionWork() {
+    func builderDidCallForCompletionWork() {
         print("Work is done")
     }
-    func choisePaint() {
+    func builderDidChoisePaint() {
         self.chooseColor()
     }
-    func continueWork() {
+    func builderDidContinueWork() {
         print("Continue work.")
     }
 }
 protocol BuilderDelegate: class {
-    func choisePaint()
-    func continueWork()
-    func callForCompletionWork()
+    func builderDidChoisePaint()
+    func builderDidContinueWork()
+    func builderDidCallForCompletionWork()
 }
 
 class Builder {
     weak var delegate: BuilderDelegate?
     func startedToWork() {
         print("Builder started working")
-        delegate?.choisePaint()
+        delegate?.builderDidChoisePaint()
     }
     func chooseColor(color: UIColor) {
-        delegate?.continueWork()
-        delegate?.callForCompletionWork()
+        delegate?.builderDidContinueWork()
+        delegate?.builderDidCallForCompletionWork()
     }
 }
 let client = CLient()
