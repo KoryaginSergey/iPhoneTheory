@@ -23,24 +23,28 @@ import Foundation
  */
 
 // Добавь код сюда:
+var country: [String : String] = ["VA": "Vatican", "UA": "Ukraine", "IT": "Italy"]
 
 /*:
  - Выведи в консоль все ключи из словаря.
  */
 // Добавь код сюда:
-
+for countryCode in country.keys {
+    print(countryCode)
+}
 /*:
  - Выведи в консоль все значения из словаря.
  */
 // Добавь код сюда:
-
+print(country.values)
 /*:
  - Выведи в консоль название самой маленькой страны.
  - Note: 👆 _Получи из словаря значение по ключу VA_
  */
 // Добавь код сюда:
-
-
+if let smallestCountryName = country["VA"] {
+    print("Smallest country - \(smallestCountryName)")
+}
 /*:
 ---
 #### Задание 2
@@ -60,6 +64,16 @@ import Foundation
  */
 
 // Добавь код сюда:
+var peopleTask2: [[String : String]] = [["firstName": "Calvin",
+                                    "lastName": "Newton"],
+                                   ["firstName": "Garry",
+                                   "lastName": "Mckenzie"],
+                                   ["firstName": "Leah",
+                                   "lastName": "Rivera"],
+                                   ["firstName": "Sonja",
+                                   "lastName": "Moreno"],
+                                   ["firstName": "Noel",
+                                   "lastName": "Bowen"]]
 /*:
 - Создай массив строк _firstNames_, состоящий из значений по ключу _“firstName”_, для каждого из словаря.
  - Выведи в консоль полученный массив.
@@ -68,7 +82,13 @@ import Foundation
  firstNames = ["Calvin","Garry","Leah","Sonja","Noel"]
  */
 // Добавь код сюда:
-
+var firstNames: [String] = []
+for item in peopleTask2 {
+    if let firstName = item["firstName"] {
+    firstNames.append(firstName)
+    }
+}
+print("firstNames = \(firstNames)")
 /*:
 ---
 #### Задание 3
@@ -117,6 +137,23 @@ var people: [[String:Any]] = [
  5. Sonja Moreno - 3
 */
 // Добавь код сюда:
+var sortedArray:  [[String:Any]] = people.sorted(by: { (first, second) -> Bool in
+    if let first = first["score"] as? Int, let second = second["score"] as? Int   {
+        return first > second
+    }
+    return false
+})
+
+for (index, item) in sortedArray.enumerated() {
+    
+    guard let firstName = item["firstName"] else {continue}
+    guard let lastName = item["lastName"] else {continue}
+    guard let score = item["score"] else {continue}
+    
+    print("\(index + 1). \(firstName) \(lastName) - \(score)")
+}
+
+
 
 
 //: [Назад: Кортежи, перечисления и псевдонимы типов](@previous)  |  Страница 9  |  [Вперед: Структуры и классы](@next)
