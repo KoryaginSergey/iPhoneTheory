@@ -169,7 +169,17 @@ if intersectionArray.isEmpty {
  - Выведи в консоль полученный массив.
 */
 // Добавь код сюда:
+var ukraine = "Ukraine"
+var poland = "Poland"
+var england = "England"
+var austria = "Austria"
+var argentina = "Argintina"
+var canada = "Canada"
+var usa = "USA"
+var albania = "Albania"
+var italia = "Italia"
 
+var countries: [String]
 
 /*:
 ---
@@ -194,7 +204,11 @@ False
 */
 
 // Добавь код сюда:
-
+let a = [3, 5, 7, 9, 11]
+let b = [3, 5, 7]
+let aSet: Set = Set(a)
+let bSet: Set = Set(b)
+print(bSet.isSubset(of: aSet))
 //: [Назад: Простые типы данных](@previous)  |  Страница 4  |  [Вперед: Управление потоком](@next)
 
 
