@@ -27,6 +27,13 @@ func areStringsEqual(x: String, _ y: String) -> Bool {
 
 // Добавь код сюда:
 
+func areValuesEqual<T: Equatable>(_ x: T, _ y: T) -> Bool {
+  return x == y
+}
+
+areValuesEqual(6, 6)
+
+
 /*:
 ---
 #### Задание 2
@@ -72,6 +79,31 @@ func existsManual(item:Person, inArray:[Person]) -> Bool
 */
 
 // Добавь код сюда:
+func existsManualOptimized<T: Equatable>(item: T, inArray: [T]) -> Bool {
+    
+    let array = inArray.filter { (element) -> Bool in
+        return element == item
+    }
+    return array.count > 0
+}
+
+
+existsManualOptimized(item: 6, inArray: [1,3,5,6])
+
+
+
+class Person: Equatable {
+    static func == (lhs: Person, rhs: Person) -> Bool {
+        return lhs.name == rhs.name && lhs.age == rhs.age
+    }
+    let name: String
+    let age: Int
+    init(name: String, age: Int) {
+        self.name = name
+        self.age = age
+    }
+}
+existsManualOptimized(item: Person(name: "Hi", age: 3), inArray: [Person(name: "Hi", age: 5), Person(name: "Ha", age: 3) ])
 
 
 //: [Назад:  Делегаты](@previous)  |  Страница 13]  [Вперед:  Паттерны проектирования](@next)
