@@ -146,6 +146,18 @@ print(name, dateOfBirth)
  - Если в названии страны встречается буква А, выведи ее нзавание в консоль.
 */
 // Добавь код сюда:
+let ukraine = "Ukraine"
+let poland = "Poland"
+let austria = "Austria"
+let argentina = "Argentina"
+let albania = "Albania"
+let countries: [String] = [ukraine, poland, austria, argentina, albania]
+for item in countries {
+    if item[item.startIndex] == "A" {
+        print(item)
+    }
+}
+
 
 /*:
 ---
@@ -156,7 +168,20 @@ print(name, dateOfBirth)
  - Выведи его консоль.
 */
 // Добавь код сюда:
+let setLettersCyrillic = "фывапролджэ"
+let setLettersCyrillicUpper = setLettersCyrillic.uppercased()
 
+func transliterate(nonLatin: String) -> String {
+    return nonLatin
+        .applyingTransform(.toLatin, reverse: false)?
+        .applyingTransform(.stripDiacritics, reverse: false)?
+        .lowercased() ?? nonLatin
+}
+let setLettersLatin = transliterate(nonLatin: setLettersCyrillicUpper)
+
+for (index, value) in setLettersLatin.enumerated() {
+    print("Index: \(index)   Letter: \(value)")
+}
 /*:
 ---
 #### Задание 9:
