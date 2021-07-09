@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 /*:
  # Делегаты
 
@@ -17,7 +18,36 @@ import Foundation
  */
 
 // Добавь код сюда:
+class User {
+    func startAlarm() {
+        let alarmClock = AlarmClock()
+        alarmClock.delegate = self
+        alarmClock.turnOn()
+    }
+}
+extension User : AlarmClockDelegate {
+    func alarmDidRing() {
+        print("The alarm clock rings. Turt it off")
+    }
+}
+protocol AlarmClockDelegate: class {
+    func alarmDidRing()
+}
 
+class AlarmClock {
+    weak var delegate: AlarmClockDelegate?
+    func turnOn() {
+        print("Started the alarm")
+        sleep(2)
+        delegate?.alarmDidRing()
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//            self.delegate?.alarmDidRing()
+//        }
+    }
+}
+
+let user = User()
+user.startAlarm()
 /*:
 ---
 ## Задание 2
@@ -26,5 +56,46 @@ import Foundation
 ![Delegate.Task2](Playground.Delegate.Task2.png)
 */
 // Добавь код сюда:
+class CLient {
+    let builder = Builder()
+    func hireBuilder() {
+        builder.delegate = self
+        print("Hire a builder")
+        builder.startedToWork()
+    }
+    private func chooseColor () {
+        print("Choose paint? I want green.")
+        builder.chooseColor(color: UIColor.green)
+    }
+}
+extension CLient : BuilderDelegate {
+    func builderDidCallForCompletionWork() {
+        print("Work is done")
+    }
+    func builderDidChoisePaint() {
+        self.chooseColor()
+    }
+    func builderDidContinueWork() {
+        print("Continue work.")
+    }
+}
+protocol BuilderDelegate: class {
+    func builderDidChoisePaint()
+    func builderDidContinueWork()
+    func builderDidCallForCompletionWork()
+}
 
+class Builder {
+    weak var delegate: BuilderDelegate?
+    func startedToWork() {
+        print("Builder started working")
+        delegate?.builderDidChoisePaint()
+    }
+    func chooseColor(color: UIColor) {
+        delegate?.builderDidContinueWork()
+        delegate?.builderDidCallForCompletionWork()
+    }
+}
+let client = CLient()
+client.hireBuilder()
 //: [Назад: Протоколы](@previous)  |  Страница 12]  [Вперед:  Универсальные шаблоны](@next)
