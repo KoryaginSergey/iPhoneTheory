@@ -36,6 +36,60 @@ import Foundation
 
 // Добавь код сюда:
 
+protocol Pizza {
+    var ingredient: String {get}
+    var size: Int {get}
+    func pizzaDescription() -> String
+}
+class CheesePizza: Pizza {
+    let ingredient: String = "cheese"
+    let size: Int
+    init(size: Int) {
+        self.size = size
+    }
+    func pizzaDescription() -> String {
+        return "\(size)cm \(ingredient) pizza"
+    }
+}
+class PepperoniPizza: Pizza {
+    let ingredient: String = "pepperoni"
+    let size: Int
+    init(size: Int) {
+        self.size = size
+    }
+    func pizzaDescription() -> String {
+        return "\(size)cm \(ingredient) pizza"
+    }
+}
+protocol Pizzeria {
+    func createSmallPizza() -> Pizza
+    func createBigPizza() -> Pizza
+}
+
+class CheesePizzeria: Pizzeria {
+    func createSmallPizza() -> Pizza {
+        return CheesePizza(size: 30)
+    }
+    func createBigPizza() -> Pizza {
+        return CheesePizza(size: 50)
+    }
+}
+class PepperPizzeria: Pizzeria {
+    func createSmallPizza() -> Pizza {
+        return PepperoniPizza(size: 30)
+    }
+    func createBigPizza() -> Pizza {
+        return PepperoniPizza(size: 50)
+    }
+}
+let cheesePizzeria: Pizzeria = CheesePizzeria()
+let pepperoniPizzeria: Pizzeria = PepperPizzeria()
+
+let smallCheesePizza: Pizza = cheesePizzeria.createSmallPizza()
+let bigPepperoniPizza: Pizza = pepperoniPizzeria.createBigPizza()
+
+print(smallCheesePizza.pizzaDescription())
+
 /*:
 ---
 #### Задание 2
@@ -44,7 +98,131 @@ import Foundation
 */
 
 // Добавь код сюда:
+protocol Vehicle {
+    var condition: String {get}
+    var fuel: String {get}
+    var maxPeople: Int {get}
+    func printDescription()
+}
+class Bicycle: Vehicle {
+    var condition: String = "new"
+    var fuel: String = "none"
+    var maxPeople: Int = 1
+    func printDescription() {
+        print("\(condition) bicycle for \(maxPeople) person. Type fuel: \(fuel)")
+    }
+}
+class Car: Vehicle {
+    var condition: String = "new"
+    var fuel: String = "petrol"
+    var maxPeople: Int = 5
+    func printDescription() {
+        print("\(condition) car for \(maxPeople) person. Type fuel: \(fuel)")
+    }
+}
+class ElectricScooter: Vehicle {
+    var condition: String = "new"
+    var fuel: String = "electro"
+    var maxPeople: Int = 1
+    func printDescription() {
+        print("\(condition) electric scooter for \(maxPeople) person. Type fuel: \(fuel)")
+    }
+}
+class Scooter: Vehicle {
+    var condition: String = "new"
+    var fuel: String = "petrol"
+    var maxPeople: Int = 2
+    func printDescription() {
+        print("\(condition) scooter for \(maxPeople) person. Type fuel: \(fuel)")
+    }
+}
+class Motorcycle: Vehicle {
+    var condition: String = "new"
+    var fuel: String = "petrol"
+    var maxPeople: Int = 2
+    func printDescription() {
+        print("\(condition) motorcycle for \(maxPeople) person. Type fuel: \(fuel)")
+    }
+}
+class UsedBicycle: Bicycle {
+    override init() {
+        super.init()
+        self.condition = "used"
+    }
+}
+class UsedCar: Car {
+    override init() {
+        super.init()
+        self.condition = "used"
+    }
+}
+class UsedElectricScooter: ElectricScooter {
+    override init() {
+        super.init()
+        self.condition = "used"
+    }
+}
+class UsedScooter: Scooter {
+    override init() {
+        super.init()
+        self.condition = "used"
+    }
+}
+class UsedMotorcycle: Motorcycle {
+    override init() {
+        super.init()
+        self.condition = "used"
+    }
+}
+protocol Dealer {
+    func createBicycle() -> Vehicle
+    func createCar() -> Vehicle
+    func createElectricScooter() -> Vehicle
+    func createScooter() -> Vehicle
+    func createMotorcycle() -> Vehicle
+}
+class ShowRoom: Dealer {
+    func createBicycle() -> Vehicle {
+        return Bicycle()
+    }
+    func createCar() -> Vehicle {
+        return Car()
+    }
+    func createElectricScooter() -> Vehicle {
+        return ElectricScooter()
+    }
+    func createScooter() -> Vehicle {
+        return Scooter()
+    }
+    func createMotorcycle() -> Vehicle {
+        return Motorcycle()
+    }
+}
+class Market: Dealer {
+    func createBicycle() -> Vehicle {
+        return UsedBicycle()
+    }
+    func createCar() -> Vehicle {
+        return UsedCar()
+    }
+    func createElectricScooter() -> Vehicle {
+        return UsedElectricScooter()
+    }
+    func createScooter() -> Vehicle {
+        return UsedScooter()
+    }
+    func createMotorcycle() -> Vehicle {
+        return UsedMotorcycle()
+    }
+}
 
+let showRoom: Dealer = ShowRoom()
+let market: Dealer = Market()
+
+showRoom.createBicycle().printDescription()
+market.createBicycle().printDescription()
+showRoom.createScooter().printDescription()
+market.createElectricScooter().printDescription()
 
 /*:
 ---
@@ -54,7 +232,70 @@ import Foundation
 */
 
 // Добавь код сюда:
+class NewCar {
+    var seats: Int?
+    var engine: Float?
+    var gps: Bool?
+    var model: String?
+    func printResult() {
+        print("\(model!) for \(seats!) person with engine \(engine!)")
+    }
+}
+protocol Builder {
+    func reset()
+    func setSeats(seats: Int)
+    func setEngine(value: Float)
+    func setGPS(gps: Bool)
+    func setName(name: String)
+    func getResult() -> NewCar
+}
+class CarBuilder: Builder {
+    func reset() {
+        newCar.seats = nil
+        newCar.engine = nil
+        newCar.gps = nil
+        newCar.model = nil
+    }
+    func setSeats(seats: Int) {
+        newCar.seats = seats
+    }
+    func setEngine(value: Float) {
+        newCar.engine = value
+    }
+    func setGPS(gps: Bool) {
+        newCar.gps = gps
+    }
+    func setName(name: String) {
+        newCar.model = name
+    }
+    func getResult() -> NewCar {
+        return self.newCar
+    }
+    private let newCar = NewCar()
+  
+}
+class Director {
+   static func createMinivan(builder: Builder) -> NewCar {
+        builder.reset()
+        builder.setName(name: "Minivan")
+        builder.setSeats(seats: 8)
+        builder.setEngine(value: 2.0)
+        builder.setGPS(gps: true)
+        return builder.getResult()
+    }
+   static func createCar(builder: Builder) -> NewCar {
+        builder.reset()
+        builder.setName(name: "Car")
+        builder.setSeats(seats: 2)
+        builder.setEngine(value: 3.0)
+        builder.setGPS(gps: true)
+        return builder.getResult()
+    }
+}
 
+var builder = CarBuilder()
+Director.createCar(builder: builder).printResult()
+Director.createMinivan(builder: builder).printResult()
 
 /*:
 ---
